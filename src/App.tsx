@@ -56,11 +56,12 @@ function App() {
           </button>
         </div>
         <div className=' col-12 d-flex flex-column gap-1' id='alert-box'>
-          {' '}
           {alerts.map((x) => (
-            <Alert type={x.type} onDismiss={x.onDismiss} clickDismissable={x.clickDismissable}>
-              {x.content}
-            </Alert>
+            <motion.div initial={{ rotateX: '90deg', transformOrigin: 'top' }} animate={{ rotateX: 0 }} transition={{ duration: 0.5 }}>
+              <Alert type={x.type} onDismiss={x.onDismiss} clickDismissable={x.clickDismissable}>
+                {x.content}
+              </Alert>
+            </motion.div>
           ))}
         </div>
         <Modal show={showModal} title='Hello, World!' onClose={closeModal} controls={controls}>
