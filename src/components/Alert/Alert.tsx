@@ -2,21 +2,19 @@ import { AlertType } from '../../types.d';
 import { PropsWithChildren, FC, MouseEventHandler } from 'react';
 
 interface AlertProps extends PropsWithChildren {
-  show: boolean;
   type: AlertType;
   clickDismissable?: boolean;
   onDismiss: MouseEventHandler;
 }
 
-const Alert: FC<AlertProps> = ({ show, type, clickDismissable, onDismiss, children }) => {
-  const classList = ['alert', `alert-${type}`, 'alert-dismissible', 'fade'];
-
-  if (show) {
-    classList.push('show');
-  }
-
+const Alert: FC<AlertProps> = ({ type, clickDismissable, onDismiss, children }) => {
   return (
-    <div className={classList.join(' ')} role='alert' style={{ display: show ? 'block' : 'none' }} onClick={clickDismissable ? onDismiss : () => {}}>
+    <div
+      className={`alert alert-${type} alert-dismissible fade show mb-0`}
+      role='alert'
+      style={{ display: 'block' }}
+      onClick={clickDismissable ? onDismiss : undefined}
+    >
       {children}
       {!clickDismissable ? <button type='button' className='btn-close' data-bs-dismiss='alert' aria-label='Close' onClick={onDismiss} /> : null}
     </div>

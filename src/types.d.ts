@@ -1,4 +1,4 @@
-import { MouseEventHandler } from 'react';
+import { MouseEventHandler, ReactNode } from 'react';
 
 export enum ButtonType {
   Primary = 'primary',
@@ -27,4 +27,12 @@ export interface ButtonDescription {
   type: ButtonType;
   label: string;
   onClick: MouseEventHandler;
+}
+
+export interface AlertDescription {
+  id: number;
+  type: AlertType;
+  clickDismissable?: boolean;
+  onDismiss: MouseEventHandler;
+  content: ReactNode;
 }
