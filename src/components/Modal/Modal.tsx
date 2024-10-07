@@ -1,5 +1,5 @@
-import { ButtonDescription, ButtonType } from '../../types.d';
-import { PropsWithChildren, MouseEventHandler, FC, MouseEvent } from 'react';
+import { ButtonDescription } from '../../types.d';
+import { PropsWithChildren, MouseEventHandler, FC } from 'react';
 import Backdrop from './Backdrop';
 import Button from '../Button/Button';
 
