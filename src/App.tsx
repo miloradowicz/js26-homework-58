@@ -1,49 +1,56 @@
+import { ButtonType } from './types.d';
 import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
-import './App.css';
 import Modal from './components/Modal/Modal';
 import Alert from './components/Alert/Alert';
+import './App.css';
 
 function App() {
   const [showModal, setShowModal] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
 
+  const openModal = () => {
+    setShowModal(true);
+  };
+
+  const openAlert = () => {
+    setShowAlert(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
+  const closeAlert = () => {
+    setShowAlert(false);
+  };
+
+  const controls = [
+    {
+      type: ButtonType.Primary,
+      label: 'Show alert',
+      onClick: () => {
+        alert('You pressed primary button');
+      },
+    },
+    {
+      type: ButtonType.Danger,
+      label: 'Close',
+      onClick: closeModal,
+    },
+  ];
+
   return (
     <>
-      <button
-        type='button'
-        className='btn btn-primary'
-        onClick={() => {
-          setShowModal(true);
-        }}
-      >
+      <button type='button' className='btn btn-primary' onClick={openModal}>
         Launch demo modal
       </button>
-      <button
-        type='button'
-        className='btn btn-primary'
-        onClick={() => {
-          setShowAlert(true);
-        }}
-      >
+      <button type='button' className='btn btn-primary' onClick={openAlert}>
         Launch demo alert
       </button>
-      <Modal
-        show={showModal}
-        title='Hello, World!'
-        onClose={() => {
-          setShowModal((show) => !show);
-        }}
-      >
+      <Modal show={showModal} title='Hello, World!' onClose={closeModal} controls={controls}>
         hahaha
       </Modal>
-      <Alert
-        show={showAlert}
-        onClose={() => {
-          setShowAlert((show) => !show);
-        }}
-      >
+      <Alert show={showAlert} onClose={closeAlert}>
         hohoho
       </Alert>
     </>
