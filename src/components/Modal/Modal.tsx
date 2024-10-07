@@ -1,18 +1,23 @@
-import { PropsWithChildren, MouseEventHandler, FC } from 'react';
+import { ButtonDescription, ButtonType } from '../../types.d';
+import { PropsWithChildren, MouseEventHandler, FC, MouseEvent } from 'react';
 import Backdrop from './Backdrop';
+import Button from '../Button/Button';
 
 interface ModalProps extends PropsWithChildren {
   show: boolean;
   onClose: MouseEventHandler;
   title: string;
+  controls: ButtonDescription[];
 }
 
-const Modal: FC<ModalProps> = ({ show, onClose, title, children }) => {
+const Modal: FC<ModalProps> = ({ show, onClose, title, controls, children }) => {
   const classList = ['modal', 'fade'];
 
   if (show) {
     classList.push('show');
   }
+
+  const buttons = controls.length > 0 ? controls.map((x, i) => <Button key={i} type={x.type} label={x.label} onClick={x.onClick} />) : null;
 
   return (
     <div>
@@ -25,11 +30,7 @@ const Modal: FC<ModalProps> = ({ show, onClose, title, children }) => {
               <button type='button' className='btn-close' aria-label='Close' onClick={onClose} />
             </div>
             <div className='modal-body'>{children}</div>
-            <div className='modal-footer'>
-              <button type='button' className='btn btn-primary' onClick={onClose}>
-                Close
-              </button>
-            </div>
+            <div className='modal-footer'>{buttons}</div>
           </div>
         </div>
       </div>
