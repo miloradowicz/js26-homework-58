@@ -1,5 +1,6 @@
 import { AlertDescription, AlertType, ButtonType } from './types.d';
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import Modal from './components/Modal/Modal';
 import Alert from './components/Alert/Alert';
 import './App.css';
@@ -45,14 +46,16 @@ function App() {
 
   return (
     <>
-      <div className='row g-3'>
-        <button type='button' className='btn btn-primary' onClick={openModal}>
-          Launch demo modal
-        </button>
-        <button type='button' className='btn btn-primary' onClick={openAlert}>
-          Add demo alert
-        </button>
-        <div className='d-flex flex-column gap-1' id='alert-box'>
+      <div className='container'>
+        <div className='row col-4 offset-4 g-3 mb-5'>
+          <button type='button' className='btn btn-primary' onClick={openModal}>
+            Launch demo modal
+          </button>
+          <button type='button' className='btn btn-primary' onClick={openAlert}>
+            Add demo alert
+          </button>
+        </div>
+        <div className=' col-12 d-flex flex-column gap-1' id='alert-box'>
           {' '}
           {alerts.map((x) => (
             <Alert type={x.type} onDismiss={x.onDismiss} clickDismissable={x.clickDismissable}>
@@ -60,10 +63,10 @@ function App() {
             </Alert>
           ))}
         </div>
+        <Modal show={showModal} title='Hello, World!' onClose={closeModal} controls={controls}>
+          hahaha
+        </Modal>
       </div>
-      <Modal show={showModal} title='Hello, World!' onClose={closeModal} controls={controls}>
-        hahaha
-      </Modal>
     </>
   );
 }
