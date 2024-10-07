@@ -21,9 +21,9 @@ const Modal: FC<ModalProps> = ({ show, onClose, title, controls, children }) => 
 
   return (
     <div>
-      <Backdrop show={show} />
       <div className={classList.join(' ')} tabIndex={-1} role='dialog' style={{ display: show ? 'block' : 'none' }}>
-        <div className='modal-dialog'>
+        <Backdrop show={show} onClick={onClose} />
+        <div className='modal-dialog' style={{ zIndex: 9999 }}>
           <div className='modal-content'>
             <div className='modal-header'>
               <h1 className='modal-title fs-5'>{title}</h1>
